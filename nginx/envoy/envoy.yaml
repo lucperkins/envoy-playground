@@ -11,27 +11,33 @@ static_resources:
           codec_type: auto
           stat_prefix: ingress_http
           route_config:
-            name: todo_route
+            name: hello
             virtual_hosts:
-            - name: todo
+            - name: backend
               domains:
               - "*"
               routes:
               - match:
-                  prefix: /todo
+                  prefix: /hello
                 route:
-                  cluster: todo
+                  prefix_rewrite: /
+                  cluster: hello
+              - match:
+                  prefix: /other
+                route:
+                  prefix_rewrite: /
+                  cluster: hello
           http_filters:
           - name: envoy.router
             config: {}
   clusters:
-  - name: todo
-    connect_timeout: 1s
+  - name: hello
+    connect_timeout: 0.25s
     type: strict_dns
     lb_policy: round_robin
     hosts:
     - socket_address:
-        address: todo
+        address: hello
         port_value: 5000
 admin:
   access_log_path: "/dev/null"
