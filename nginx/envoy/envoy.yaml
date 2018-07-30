@@ -11,28 +11,28 @@ static_resources:
           codec_type: auto
           stat_prefix: ingress_http
           route_config:
-            name: prometheus_route
+            name: todo_route
             virtual_hosts:
-            - name: prometheus
+            - name: todo
               domains:
               - "*"
               routes:
               - match:
-                  prefix: /prometheus
+                  prefix: /todo
                 route:
-                  cluster: prometheus
+                  cluster: todo
           http_filters:
           - name: envoy.router
             config: {}
   clusters:
-  - name: prometheus
+  - name: todo
     connect_timeout: 1s
     type: strict_dns
     lb_policy: round_robin
     hosts:
     - socket_address:
-        address: prometheus
-        port_value: 9090
+        address: todo
+        port_value: 5000
 admin:
   access_log_path: "/dev/null"
   address:

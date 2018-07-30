@@ -1,0 +1,20 @@
+version: '3.2'
+services:
+  envoy:
+    image: envoyproxy/envoy:latest
+    ports:
+    - 8000:80
+    - 8001:8001
+    volumes:
+    - ./envoy/envoy.yaml:/etc/envoy/envoy.yaml:ro
+  nginx:
+    image: nginx:latest
+    ports:
+    - 9000:80
+    volumes:
+    - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+  todo:
+    build:
+      context: todo
+    expose:
+    - 5000
