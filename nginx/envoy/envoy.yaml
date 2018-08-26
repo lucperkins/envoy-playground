@@ -38,7 +38,7 @@ static_resources:
     hosts:
     - socket_address:
         address: hello
-        port_value: 5000
+        port_value: 1111
 admin:
   access_log_path: "/dev/null"
   address:
