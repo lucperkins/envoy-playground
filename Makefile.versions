@@ -1,0 +1,5 @@
+ENVOY_TAG = 6ea4a035315109fa6c5eff5b74e983729a179f3f
+NGINX_TAG = 1.14-alpine
+
+export ENVOY_TAG
+export NGINX_TAG
